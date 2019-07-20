@@ -67,7 +67,7 @@ public interface OpenKit extends Closeable {
      * @param clientIPAddress client IP address where this Session is coming from
      * @return Session instance to work with
      */
-    Session createSession(String clientIPAddress);
+    Session createSession(String clientIPAddress, long sessionStartTime);
 
     /**
      * Shuts down OpenKit, ending all open Sessions and waiting for them to be sent.

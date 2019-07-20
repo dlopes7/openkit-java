@@ -144,8 +144,8 @@ public class Beacon {
      * @param threadIDProvider Provider for retrieving thread id.
      * @param timingProvider Provider for time related methods.
      */
-    public Beacon(Logger logger, BeaconCacheImpl beaconCache, Configuration configuration, String clientIPAddress, ThreadIDProvider threadIDProvider, TimingProvider timingProvider) {
-        this(logger, beaconCache, configuration, clientIPAddress, threadIDProvider, timingProvider, new Random());
+    public Beacon(Logger logger, BeaconCacheImpl beaconCache, Configuration configuration, String clientIPAddress, ThreadIDProvider threadIDProvider, TimingProvider timingProvider, long sessionStartTime) {
+        this(logger, beaconCache, configuration, clientIPAddress, threadIDProvider, timingProvider, new Random(), sessionStartTime);
     }
 
     /**
@@ -159,7 +159,8 @@ public class Beacon {
      * @param timingProvider Provider for time related methods.
      * @param random Random that can be mocked for tests
      */
-    Beacon(Logger logger, BeaconCacheImpl beaconCache, Configuration configuration, String clientIPAddress, ThreadIDProvider threadIDProvider, TimingProvider timingProvider, Random random) {
+    Beacon(Logger logger, BeaconCacheImpl beaconCache, Configuration configuration, String clientIPAddress, ThreadIDProvider threadIDProvider, TimingProvider timingProvider, Random random,
+           long sessionStartTime) {
         this.logger = logger;
         this.beaconCache = beaconCache;
         this.sessionNumber = configuration.createSessionNumber();
@@ -167,7 +168,7 @@ public class Beacon {
 
         this.configuration = configuration;
         this.threadIDProvider = threadIDProvider;
-        this.sessionStartTime = timingProvider.provideTimestampInMilliseconds();
+        this.sessionStartTime = sessionStartTime;
 
         this.deviceID = createDeviceID(random, configuration);
 

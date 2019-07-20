@@ -163,14 +163,14 @@ public class OpenKitImpl extends OpenKitComposite implements OpenKit {
     }
 
     @Override
-    public Session createSession(String clientIPAddress) {
+    public Session createSession(String clientIPAddress, long sessionStartTime) {
         if (logger.isDebugEnabled()) {
             logger.debug(getClass().getSimpleName() + " createSession(" + clientIPAddress + ")");
         }
         synchronized (lockObject) {
             if (!isShutdown) {
                 // create beacon for session
-                Beacon beacon = new Beacon(logger, beaconCache, configuration, clientIPAddress, threadIDProvider, timingProvider);
+                Beacon beacon = new Beacon(logger, beaconCache, configuration, clientIPAddress, threadIDProvider, timingProvider, sessionStartTime);
                 // create session and add it to the list of children
                 SessionImpl session = new SessionImpl(logger, this, beaconSender, beacon);
                 storeChildInList(session);
