@@ -88,5 +88,5 @@ public interface Session extends Closeable {
     /**
      * Ends this Session and marks it as ready for immediate sending.
      */
-    void end();
+    void end(long sessionEndTime);
 }

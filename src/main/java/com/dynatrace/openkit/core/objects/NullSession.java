@@ -58,12 +58,12 @@ public class NullSession implements Session {
     }
 
     @Override
-    public void end() {
+    public void end(long sessionEndTime) {
         // intentionally left empty, due to NullObject pattern
     }
 
     @Override
     public void close() {
-        end();
+        end(0);
     }
 }

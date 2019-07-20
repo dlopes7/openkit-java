@@ -72,7 +72,7 @@ public class SessionImpl extends OpenKitComposite implements Session {
 
     @Override
     public void close() {
-        end();
+        end(this.endTime);
     }
 
     @Override
@@ -172,7 +172,7 @@ public class SessionImpl extends OpenKitComposite implements Session {
     }
 
     @Override
-    public void end() {
+    public void end(long sessionEndTime) {
         if (logger.isDebugEnabled()) {
             logger.debug(this + "end()");
         }
@@ -200,7 +200,7 @@ public class SessionImpl extends OpenKitComposite implements Session {
         }
 
         // set end time after child objects have been ended
-        endTime = beacon.getCurrentTimestamp();
+        endTime = sessionEndTime;
 
         // create end session data on beacon
         beacon.endSession(this);

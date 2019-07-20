@@ -143,8 +143,8 @@ class SessionWrapper {
     /**
      * Ends the session.
      */
-    void end() {
-        session.end();
+    void end(long sessionEndTime) {
+        session.end(sessionEndTime);
     }
 
     /**
