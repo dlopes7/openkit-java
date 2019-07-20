@@ -75,7 +75,8 @@ public abstract class BaseActionImpl extends OpenKitComposite implements Action 
     BaseActionImpl(Logger logger,
                    OpenKitComposite parent,
                    String name,
-                   Beacon beacon) {
+                   Beacon beacon,
+                   long actionStartTime) {
         this.logger = logger;
         this.parent = parent;
         parentActionID = parent.getActionID();
@@ -84,7 +85,7 @@ public abstract class BaseActionImpl extends OpenKitComposite implements Action 
         id = beacon.createID();
         this.name = name;
 
-        startTime = beacon.getCurrentTimestamp();
+        startTime = actionStartTime;
         startSequenceNo = beacon.createSequenceNumber();
 
         isActionLeft = false;

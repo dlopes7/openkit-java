@@ -21,13 +21,13 @@ import com.dynatrace.openkit.api.RootAction;
 import com.dynatrace.openkit.api.Session;
 
 /**
- * This class is returned as RootAction by {@link Session#enterAction(String)} when the {@link Session#end()}
+ * This class is returned as RootAction by {@link Session#enterAction(String, long)} when the {@link Session#end()}
  * has been called before.
  */
 public class NullRootAction extends NullAction implements RootAction {
 
     @Override
-    public Action enterAction(String actionName) {
+    public Action enterAction(String actionName, long actionStartTime) {
         return new NullAction(this);
     }
 }

@@ -24,7 +24,7 @@ import com.dynatrace.openkit.api.WebRequestTracer;
 import java.net.URLConnection;
 
 /**
- * This class is returned as Session by {@link OpenKit#createSession(String)} when the {@link OpenKit#shutdown()}
+ * This class is returned as Session by {@link OpenKit#createSession(String, long)} when the {@link OpenKit#shutdown()}
  * has been called before.
  */
 public class NullSession implements Session {
@@ -33,7 +33,7 @@ public class NullSession implements Session {
     private static final WebRequestTracer NULL_WEB_REQUEST_TRACER = new NullWebRequestTracer();
 
     @Override
-    public RootAction enterAction(String actionName) {
+    public RootAction enterAction(String actionName, long actionStartTime) {
         return NULL_ROOT_ACTION;
     }
 

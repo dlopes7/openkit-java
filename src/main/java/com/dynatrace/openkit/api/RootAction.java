@@ -32,5 +32,5 @@ public interface RootAction extends Action {
      * @param actionName name of the Action
      * @return Action instance to work with
      */
-    Action enterAction(String actionName);
+    Action enterAction(String actionName, long actionStartTime);
 }

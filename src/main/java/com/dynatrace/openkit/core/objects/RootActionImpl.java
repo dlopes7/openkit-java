@@ -34,12 +34,12 @@ public class RootActionImpl extends BaseActionImpl implements RootAction {
      * @param name The action's name
      * @param beacon The beacon for retrieving certain data and sending data
      */
-    RootActionImpl(Logger logger, SessionImpl parentSession, String name, Beacon beacon) {
-        super(logger, parentSession, name, beacon);
+    RootActionImpl(Logger logger, SessionImpl parentSession, String name, Beacon beacon, long actionStartTime) {
+        super(logger, parentSession, name, beacon, actionStartTime);
     }
 
     @Override
-    public Action enterAction(String actionName) {
+    public Action enterAction(String actionName, long actionStartTime) {
         if (logger.isDebugEnabled()) {
             logger.debug(this + "enterAction(" + actionName + ")");
         }
@@ -49,7 +49,7 @@ public class RootActionImpl extends BaseActionImpl implements RootAction {
         }
         synchronized (lockObject) {
             if (!isActionLeft()) {
-                LeafActionImpl childAction = new LeafActionImpl(logger, this, actionName, beacon);
+                LeafActionImpl childAction = new LeafActionImpl(logger, this, actionName, beacon, actionStartTime);
                 storeChildInList(childAction);
                 return childAction;
             }

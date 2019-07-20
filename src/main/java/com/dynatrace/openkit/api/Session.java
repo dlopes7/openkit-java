@@ -35,7 +35,7 @@ public interface Session extends Closeable {
      * @param actionName name of the Action
      * @return Action instance to work with
      */
-    RootAction enterAction(String actionName);
+    RootAction enterAction(String actionName, long actionStartTime);
 
     /**
      * Tags a session with the provided {@code userTag}.

@@ -76,7 +76,7 @@ public class SessionImpl extends OpenKitComposite implements Session {
     }
 
     @Override
-    public RootAction enterAction(String actionName) {
+    public RootAction enterAction(String actionName, long actionStartTime) {
         if (actionName == null || actionName.isEmpty()) {
             logger.warning(this + "enterAction: actionName must not be null or empty");
             return NULL_ROOT_ACTION;
@@ -86,7 +86,7 @@ public class SessionImpl extends OpenKitComposite implements Session {
         }
         synchronized (lockObject) {
             if (!isSessionEnded()) {
-                RootActionImpl result = new RootActionImpl(logger, this, actionName, beacon);
+                RootActionImpl result = new RootActionImpl(logger, this, actionName, beacon, actionStartTime);
                 storeChildInList(result);
                 return result;
             }

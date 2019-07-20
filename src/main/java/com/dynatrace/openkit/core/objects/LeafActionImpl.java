@@ -42,8 +42,8 @@ public class LeafActionImpl extends BaseActionImpl {
      * @param name The action's name
      * @param beacon The beacon for retrieving certain data and sending data
      */
-    LeafActionImpl(Logger logger, RootActionImpl parentAction, String name, Beacon beacon) {
-        super(logger, parentAction, name, beacon);
+    LeafActionImpl(Logger logger, RootActionImpl parentAction, String name, Beacon beacon, long actionStartTime) {
+        super(logger, parentAction, name, beacon, actionStartTime);
         this.parentAction = parentAction;
     }
 
