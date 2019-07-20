@@ -100,6 +100,6 @@ public interface Action extends Closeable {
      *
      * @return the parent Action, or null if there is no parent Action
      */
-    Action leaveAction();
+    Action leaveAction(long actionEndTime);
 
 }

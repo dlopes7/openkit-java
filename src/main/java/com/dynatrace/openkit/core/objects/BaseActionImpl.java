@@ -95,7 +95,7 @@ public abstract class BaseActionImpl extends OpenKitComposite implements Action 
 
     @Override
     public void close() {
-        leaveAction();
+        leaveAction(this.endTime);
     }
 
     @Override
@@ -230,7 +230,7 @@ public abstract class BaseActionImpl extends OpenKitComposite implements Action 
     }
 
     @Override
-    public Action leaveAction() {
+    public Action leaveAction(long actionEndTime) {
         if (logger.isDebugEnabled()) {
             logger.debug(this + "leaveAction(" + name + ")");
         }
@@ -256,7 +256,7 @@ public abstract class BaseActionImpl extends OpenKitComposite implements Action 
         }
 
         // set end time and end sequence number
-        endTime = beacon.getCurrentTimestamp();
+        endTime = actionEndTime;
         endSequenceNo = beacon.createSequenceNumber();
 
         // serialize this action after setting all remaining information

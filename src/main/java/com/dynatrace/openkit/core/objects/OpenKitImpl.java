@@ -39,7 +39,7 @@ import java.util.List;
  */
 public class OpenKitImpl extends OpenKitComposite implements OpenKit {
 
-    /** Session returned by {@link #createSession(String)}, after calling {@link #shutdown()} */
+    /** Session returned by {@link #createSession(String, long)}, after calling {@link #shutdown()} */
     static final Session NULL_SESSION = new NullSession();
     /** Cache class used to store serialized {@link Beacon} data */
     private final BeaconCacheImpl beaconCache;

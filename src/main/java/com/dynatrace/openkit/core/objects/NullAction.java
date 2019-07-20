@@ -23,7 +23,7 @@ import com.dynatrace.openkit.api.WebRequestTracer;
 import java.net.URLConnection;
 
 /**
- * This class is returned as Action by {@link RootAction#enterAction(String)} when the {@link RootAction#leaveAction()}
+ * This class is returned as Action by {@link RootAction#enterAction(String, long)} when the {@link RootAction#leaveAction(long)}
  * has been called before.
  */
 class NullAction implements Action {
@@ -83,12 +83,12 @@ class NullAction implements Action {
     }
 
     @Override
-    public Action leaveAction() {
+    public Action leaveAction(long actionEndTime) {
         return parentAction;
     }
 
     @Override
     public void close() {
-        leaveAction();
+        leaveAction(0);
     }
 }
