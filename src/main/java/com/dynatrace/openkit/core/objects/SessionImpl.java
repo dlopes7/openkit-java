@@ -96,7 +96,7 @@ public class SessionImpl extends OpenKitComposite implements Session {
     }
 
     @Override
-    public void identifyUser(String userTag) {
+    public void identifyUser(String userTag, long eventTimestamp) {
         if (userTag == null || userTag.isEmpty()) {
             logger.warning(this + "identifyUser: userTag must not be null or empty");
             return;
@@ -106,7 +106,7 @@ public class SessionImpl extends OpenKitComposite implements Session {
         }
         synchronized (lockObject) {
             if (!isSessionEnded()) {
-                beacon.identifyUser(userTag);
+                beacon.identifyUser(userTag, eventTimestamp);
             }
         }
     }

@@ -601,7 +601,7 @@ public class Beacon {
      *
      * @param userTag User tag containing data to serialize.
      */
-    public void identifyUser(String userTag) {
+    public void identifyUser(String userTag, long eventTimestamp) {
 
         if (isCapturingDisabled()) {
             return;
@@ -618,7 +618,7 @@ public class Beacon {
         long timestamp = timingProvider.provideTimestampInMilliseconds();
         addKeyValuePair(eventBuilder, BEACON_KEY_PARENT_ACTION_ID, 0);
         addKeyValuePair(eventBuilder, BEACON_KEY_START_SEQUENCE_NUMBER, createSequenceNumber());
-        addKeyValuePair(eventBuilder, BEACON_KEY_TIME_0, getTimeSinceSessionStartTime(timestamp));
+        addKeyValuePair(eventBuilder, BEACON_KEY_TIME_0, eventTimestamp);
 
         addEventData(timestamp, eventBuilder);
     }

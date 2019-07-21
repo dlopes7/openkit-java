@@ -38,7 +38,7 @@ public class NullSession implements Session {
     }
 
     @Override
-    public void identifyUser(String userTag) {
+    public void identifyUser(String userTag, long eventTimestamp) {
         // intentionally left empty, due to NullObject pattern
     }
 

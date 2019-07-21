@@ -47,7 +47,7 @@ public interface Session extends Closeable {
      *
      * @param userTag id of the user
      */
-    void identifyUser(String userTag);
+    void identifyUser(String userTag, long eventTimestamp);
 
     /**
      * Reports a crash with a specified error name, crash reason and a stacktrace.
