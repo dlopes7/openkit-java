@@ -34,7 +34,7 @@ public interface Action extends Closeable {
      * @param eventName name of the event
      * @return this Action (for usage as fluent API)
      */
-    Action reportEvent(String eventName);
+    Action reportEvent(String eventName, long eventTimestamp);
 
     /**
      * Reports an int value with a specified name.
@@ -43,7 +43,7 @@ public interface Action extends Closeable {
      * @param value     value itself
      * @return this Action (for usage as fluent API)
      */
-    Action reportValue(String valueName, int value);
+    Action reportValue(String valueName, int value, long eventTimestamp);
 
     /**
      * Reports a double value with a specified name.
@@ -52,7 +52,7 @@ public interface Action extends Closeable {
      * @param value     value itself
      * @return this Action (for usage as fluent API)
      */
-    Action reportValue(String valueName, double value);
+    Action reportValue(String valueName, double value, long eventTimestamp);
 
     /**
      * Reports a String value with a specified name.
@@ -61,7 +61,7 @@ public interface Action extends Closeable {
      * @param value     value itself
      * @return this Action (for usage as fluent API)
      */
-    Action reportValue(String valueName, String value);
+    Action reportValue(String valueName, String value, long eventTimestamp);
 
     /**
      * Reports an error with a specified name, error code and reason.

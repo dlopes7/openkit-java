@@ -99,7 +99,7 @@ public abstract class BaseActionImpl extends OpenKitComposite implements Action 
     }
 
     @Override
-    public Action reportEvent(String eventName) {
+    public Action reportEvent(String eventName, long eventTimestamp) {
         if (eventName == null || eventName.isEmpty()) {
             logger.warning(this + "reportEvent: eventName must not be null or empty");
             return this;
@@ -109,14 +109,14 @@ public abstract class BaseActionImpl extends OpenKitComposite implements Action 
         }
         synchronized (lockObject) {
             if (!isActionLeft()) {
-                beacon.reportEvent(getID(), eventName);
+                beacon.reportEvent(getID(), eventName, eventTimestamp);
             }
         }
         return this;
     }
 
     @Override
-    public Action reportValue(String valueName, int value) {
+    public Action reportValue(String valueName, int value, long eventTimestamp) {
         if (valueName == null || valueName.isEmpty()) {
             logger.warning(this + "reportValue (int): valueName must not be null or empty");
             return this;
@@ -126,14 +126,14 @@ public abstract class BaseActionImpl extends OpenKitComposite implements Action 
         }
         synchronized (lockObject) {
             if (!isActionLeft()) {
-                beacon.reportValue(getID(), valueName, value);
+                beacon.reportValue(getID(), valueName, value, eventTimestamp);
             }
         }
         return this;
     }
 
     @Override
-    public Action reportValue(String valueName, double value) {
+    public Action reportValue(String valueName, double value, long eventTimestamp) {
         if (valueName == null || valueName.isEmpty()) {
             logger.warning(this + "reportValue (double): valueName must not be null or empty");
             return this;
@@ -143,14 +143,14 @@ public abstract class BaseActionImpl extends OpenKitComposite implements Action 
         }
         synchronized (lockObject) {
             if (!isActionLeft()) {
-                beacon.reportValue(getID(), valueName, value);
+                beacon.reportValue(getID(), valueName, value, eventTimestamp);
             }
         }
         return this;
     }
 
     @Override
-    public Action reportValue(String valueName, String value) {
+    public Action reportValue(String valueName, String value, long eventTimestamp) {
         if (valueName == null || valueName.isEmpty()) {
             logger.warning(this + "reportValue (String): valueName must not be null or empty");
             return this;
@@ -160,7 +160,7 @@ public abstract class BaseActionImpl extends OpenKitComposite implements Action 
         }
         synchronized (lockObject) {
             if (!isActionLeft()) {
-                beacon.reportValue(getID(), valueName, value);
+                beacon.reportValue(getID(), valueName, value, eventTimestamp);
             }
         }
         return this;

@@ -380,7 +380,7 @@ public class Beacon {
      * @param valueName Value's name.
      * @param value Actual value to report.
      */
-    public void reportValue(int parentActionID, String valueName, int value) {
+    public void reportValue(int parentActionID, String valueName, int value, long eventTime) {
 
         if (isCapturingDisabled()) {
             return;
@@ -392,7 +392,7 @@ public class Beacon {
 
         StringBuilder eventBuilder = new StringBuilder();
 
-        long eventTimestamp = buildEvent(eventBuilder, EventType.VALUE_INT, valueName, parentActionID);
+        long eventTimestamp = buildEvent(eventBuilder, EventType.VALUE_INT, valueName, parentActionID, eventTime);
         addKeyValuePair(eventBuilder, BEACON_KEY_VALUE, value);
 
         addEventData(eventTimestamp, eventBuilder);
@@ -409,7 +409,7 @@ public class Beacon {
      * @param valueName Value's name.
      * @param value Actual value to report.
      */
-    public void reportValue(int parentActionID, String valueName, double value) {
+    public void reportValue(int parentActionID, String valueName, double value, long eventTime) {
 
         if (isCapturingDisabled()) {
             return;
@@ -421,7 +421,7 @@ public class Beacon {
 
         StringBuilder eventBuilder = new StringBuilder();
 
-        long eventTimestamp = buildEvent(eventBuilder, EventType.VALUE_DOUBLE, valueName, parentActionID);
+        long eventTimestamp = buildEvent(eventBuilder, EventType.VALUE_DOUBLE, valueName, parentActionID, eventTime);
         addKeyValuePair(eventBuilder, BEACON_KEY_VALUE, value);
 
         addEventData(eventTimestamp, eventBuilder);
@@ -438,7 +438,7 @@ public class Beacon {
      * @param valueName Value's name.
      * @param value Actual value to report.
      */
-    public void reportValue(int parentActionID, String valueName, String value) {
+    public void reportValue(int parentActionID, String valueName, String value, long eventTime) {
 
         if (isCapturingDisabled()) {
             return;
@@ -450,7 +450,7 @@ public class Beacon {
 
         StringBuilder eventBuilder = new StringBuilder();
 
-        long eventTimestamp = buildEvent(eventBuilder, EventType.VALUE_STRING, valueName, parentActionID);
+        long eventTimestamp = buildEvent(eventBuilder, EventType.VALUE_STRING, valueName, parentActionID, eventTime);
         if (value != null) {
             addKeyValuePair(eventBuilder, BEACON_KEY_VALUE, truncate(value));
         }
@@ -468,7 +468,7 @@ public class Beacon {
      * @param parentActionID The ID of the {@link com.dynatrace.openkit.api.Action} on which this event was reported.
      * @param eventName Event's name.
      */
-    public void reportEvent(int parentActionID, String eventName) {
+    public void reportEvent(int parentActionID, String eventName, long eventTime) {
 
         if (isCapturingDisabled()) {
             return;
@@ -480,7 +480,7 @@ public class Beacon {
 
         StringBuilder eventBuilder = new StringBuilder();
 
-        long eventTimestamp = buildEvent(eventBuilder, EventType.NAMED_EVENT, eventName, parentActionID);
+        long eventTimestamp = buildEvent(eventBuilder, EventType.NAMED_EVENT, eventName, parentActionID, eventTime);
 
         addEventData(eventTimestamp, eventBuilder);
     }
@@ -767,10 +767,8 @@ public class Beacon {
      * @param parentActionID The unique Action identifier on which this event was reported.
      * @return The timestamp associated with the event (timestamp since session start time).
      */
-    private long buildEvent(StringBuilder builder, EventType eventType, String name, int parentActionID) {
+    private long buildEvent(StringBuilder builder, EventType eventType, String name, int parentActionID, long eventTimestamp) {
         buildBasicEventData(builder, eventType, name);
-
-        long eventTimestamp = timingProvider.provideTimestampInMilliseconds();
 
         addKeyValuePair(builder, BEACON_KEY_PARENT_ACTION_ID, parentActionID);
         addKeyValuePair(builder, BEACON_KEY_START_SEQUENCE_NUMBER, createSequenceNumber());

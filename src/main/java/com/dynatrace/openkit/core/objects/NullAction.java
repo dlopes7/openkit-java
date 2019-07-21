@@ -48,22 +48,22 @@ class NullAction implements Action {
     }
 
     @Override
-    public Action reportEvent(String eventName) {
+    public Action reportEvent(String eventName, long eventTimestamp) {
         return this;
     }
 
     @Override
-    public Action reportValue(String valueName, int value) {
+    public Action reportValue(String valueName, int value, long eventTimestamp) {
         return this;
     }
 
     @Override
-    public Action reportValue(String valueName, double value) {
+    public Action reportValue(String valueName, double value, long eventTimestamp) {
         return this;
     }
 
     @Override
-    public Action reportValue(String valueName, String value) {
+    public Action reportValue(String valueName, String value, long eventTimestamp) {
         return this;
     }
 
